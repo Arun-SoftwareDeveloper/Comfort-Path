@@ -95,12 +95,33 @@ function generateProductCards() {
           <!-- Previous and Next controls here -->
         </div>
         <div class="card-body">
+          <button class="btn btn-primary" id="buyButton${index}">Buy Now</button>
           <h5 class="card-title">${product.name}</h5>
           <p class="card-text">${product.description}</p>
+        </div>
       </div>
     `;
 
     productContainer.appendChild(productCard);
+
+    // Add a click event listener to the "Buy Now" button
+    const buyButton = productCard.querySelector(`#buyButton${index}`);
+    buyButton.addEventListener("click", () => {
+      const stripe = Stripe(
+        "pk_test_51O2T1RSCaNVLK4v6UcfVsiZ4zYwKz6f8aYR1P3fOP3jSGi41wz3xzKoUtDphoLHeOIDrrwufkUvzwnC8CKYyZQEt005ySu4LeB"
+      );
+      // Use Stripe Checkout to handle the payment
+      stripe.redirectToCheckout({
+        items: [
+          {
+            sku: "price_1O5AVYSCaNVLK4v6nv5jLaxd", // Replace with the actual SKU or product identifier
+            quantity: 1,
+          },
+        ],
+        successUrl: "https://effulgent-meerkat-bde720.netlify.app/success",
+        cancelUrl: "https://effulgent-meerkat-bde720.netlify.app/cancel",
+      });
+    });
   });
 }
 
