@@ -3,7 +3,8 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Your Page Title</title>
+    <title>COMFORT_PATH</title>
+    <link rel="icon" href="./Images/title-logo.png" />
 
     <!-- Include Bootstrap CSS -->
     <link
@@ -12,7 +13,67 @@
     />
     <link rel="stylesheet" href="style.css" />
   </head>
+  <style>
+    /* Add styling to the categories section */
+    .Categories-title {
+      text-align: center;
+      margin-top: 20px;
+      font-size: 24px;
+    }
 
+    .category-card {
+      text-align: center;
+      margin: 10px;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      background-color: #f9f9f9;
+      transition: transform 0.2s;
+    }
+
+    .category-card:hover {
+      transform: scale(1.05);
+    }
+
+    .category-card img {
+      max-width: 100%;
+      display: block;
+      margin: 0 auto;
+    }
+
+    /* Add some spacing to the navigation links */
+    .navbar-nav .nav-link {
+      margin-right: 20px;
+    }
+
+    /* Center the main content */
+    .container {
+      text-align: center;
+    }
+
+    /* Add some margin to the top of the Welcome message */
+    .container h1 {
+      margin-top: 30px;
+    }
+ 
+/* Style the footer container */
+footer{
+  background-color: black;
+}
+.footer-container {
+  color: #fff; /* Text color for the footer */
+  padding: 10px; /* Padding around the text */
+  margin-top: 20px; /* Space between the content and the footer */
+  width:1300px ;
+}
+
+/* Center the text within the footer container */
+.container.text-center {
+  text-align: center;
+  font-weight: lighter;
+}
+
+  </style>
   <body>
     <!-- Bootstrap navigation bar -->
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -72,29 +133,167 @@
         </div>
       </div>
 
-      <div class="row"></div>
-    </div>
+      <!-- Bootstrap Carousel -->
+      <div
+        id="imageCarousel"
+        class="carousel slide"
+        data-ride="carousel"
+        data-interval="3000"
+      >
+        <div class="carousel-inner">
+          <div class="carousel-item active">
+            <img
+              src="./Images/dashboard1.jpg"
+              class="d-block w-100"
+              alt="Image 1"
+              style="width: 800px; height: 450px"
+            />
+          </div>
+          <div class="carousel-item">
+            <img
+              src="./Images/dashboard2.jpg"
+              class="d-block w-100"
+              alt="Image 2"
+              style="width: 800px; height: 450px"
+            />
+          </div>
+          <div class="carousel-item">
+            <img
+              src="./Images/dashboard3.jpg"
+              class="d-block w-100"
+              alt="Image 3"
+              style="width: 800px; height: 450px"
+            />
+          </div>
+        </div>
+        <a
+          class="carousel-control-prev"
+          href="#imageCarousel"
+          role="button"
+          data-slide="prev"
+        >
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="sr-only">Previous</span>
+        </a>
+        <a
+          class="carousel-control-next"
+          href="#imageCarousel"
+          role="button"
+          data-slide="next"
+        >
+          <span class="carousel-control-next-icon" ariahidden="true"></span>
+          <span class="sr-only">Next</span>
+        </a>
+      </div>
 
-    <!-- Include Bootstrap JS and jQuery -->
+      <div class="row">
+        <h1 class="Categories-title">CATEGORIES</h1>
+
+        <!-- Start of the row for categories -->
+        <div class="row">
+          <div class="col-md-4">
+            <div class="category-card">
+             <a href="menshoes.html">
+               <img
+                src="./Images/menshoes.jpeg"
+                alt="Men Shoes"
+                width="400px"
+                height="300px"
+              />
+              <h3>Men's Shoes</h3>
+             </a>
+            </div>
+          </div>
+
+          <div class="col-md-4">
+            <div class="category-card">
+              <img
+                src="./Images/women-shoes.jpg"
+                alt="Women's Shoes"
+                width="400px"
+                height="300px"
+              />
+              
+              <h3>Women's Shoes</h3>
+            </div>
+          </div>
+
+          <div class="col-md-4">
+            <div class="category-card">
+              <img
+                src="./Images/kids-shoes.webp"
+                alt="Kids Shoes"
+                width="400px"
+                height="300px"
+              />
+              <h3>Kids' Shoes</h3>
+            </div>
+            
+          </div>
+        </div>
+        <!-- End of the row for categories -->
+      </div>
+       <h1 class="Categories-title">OUR BESTSELLERS</h1>
+
+        <!-- Start of the row for categories -->
+        <div class="row">
+          <div class="col-md-3">
+            <div class="category-card">
+              <img
+                src="./Images/colehaan1.jpg"
+                alt="Men Shoes"
+                width="400px"
+                height="300px"
+              />
+              <h3>COLEHAAN-STYLISH BOOTS</h3>
+            </div>
+          </div>
+
+          <div class="col-md-3">
+            <div class="category-card">
+              <img
+                src="./Images/converse3.webp"
+                alt="Women's Shoes"
+                width="400px"
+                height="300px"
+              />
+              <h3>CONVERSE ALL-STAR </h3>
+            </div>
+          </div>
+
+          <div class="col-md-3">
+            <div class="category-card">
+              <img
+                src="./Images/ax2.webp"
+                alt="Kids Shoes"
+                width="400px"
+                height="300px"
+              />
+              <h3>ARMANI EXCHANGE</h3>
+            </div>
+
+    </div>
+    <div class="col-md-3">
+            <div class="category-card">
+              <img
+                src="./Images/LV1.webp"
+                alt="Kids Shoes"
+                width="400px"
+                height="300px"
+              />
+              <h3>LOUIS VUITTON CASUAL</h3>
+            </div>
+    </div>
+    <footer>
+      <div class="container text-center" >
+        <h1 class="footer-container">Copyright &copy; Comfort Path 2023</h1>
+      </div>
+    </footer>
+
+    <!-- Include Bootstrap JS, jQuery, and Font Awesome (for the search icon) -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    <script src="script.js"></script>
-    <script>
-      // JavaScript to toggle the sidebar when "Categories" link is clicked
-      document.addEventListener("DOMContentLoaded", function () {
-        const toggleCategories = document.getElementById("toggleCategories");
-        if (toggleCategories) {
-          toggleCategories.addEventListener("click", function (e) {
-            e.preventDefault(); // Prevent the link from navigating
-            const sidebarContainer =
-              document.querySelector(".sidebar-container");
-            if (sidebarContainer) {
-              sidebarContainer.classList.toggle("show-sidebar");
-            }
-          });
-        }
-      });
-    </script>
+    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
   </body>
 </html>
