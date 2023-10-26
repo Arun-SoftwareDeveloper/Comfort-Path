@@ -4,9 +4,9 @@ const products = [
     description:
       "The newly-surfaced retro primarily boasts a “colorless” arrangement throughout its upper and sole unit.",
     images: [
-      "./Images/nike-airjordan.webp",
-      "./Images/nike-airjordan2.jpg",
-      "./Images/nike-airjodan3.jpg",
+      "../Images/nike-airjordan.webp",
+      "../Images/nike-airjordan2.jpg",
+      "../Images/nike-airjodan3.jpg",
     ],
   },
   {
@@ -14,25 +14,25 @@ const products = [
     description:
       "A color-soaked classic from high top to toe, the Chuck Taylor All Star sneaker stays forever fresh to give an Aesthetic Look for your foots.",
     images: [
-      "./Images/converse1.webp",
-      "./Images/converse2.webp",
-      "./Images/converse3.webp",
+      "../Images/converse1.webp",
+      "../Images/converse2.webp",
+      "../Images/converse3.webp",
     ],
   },
   {
     name: "LOUIS VUITTON",
     description:
       " Louis Vuitton designs shoes for men to fit every occasion elegant derbies and refined richelieus for casuals.",
-    images: ["./Images/LV1.webp", "./Images/LV2.webp", "./Images/LV3.webp"],
+    images: ["../Images/LV1.webp", "../Images/LV2.webp", "../Images/LV3.webp"],
   },
   {
     name: "PUMA-MOTOSPORT",
     description:
       "  Supreme performance reaches the peak of fan style in our BMW M  Motorsports Drift Cat 8 shoe(specially for the motosport-bikers).",
     images: [
-      "./Images/puma-motosport1.webp",
-      "./Images/puma-motosport2.jpeg",
-      "./Images/puma-motosport3.webp",
+      "../Images/puma-motosport1.webp",
+      "../Images/puma-motosport2.jpeg",
+      "../Images/puma-motosport3.webp",
     ],
   },
   {
@@ -40,9 +40,9 @@ const products = [
     description:
       "The perfect balance of traction and flexibility combine.The hybrid outsoles, which are part smooth leather and part rubber, are especially good.",
     images: [
-      "./Images/colehaan1.jpg",
-      "./Images/colehaan2.jpg",
-      "./Images/colehaan3.jpg",
+      "../Images/colehaan1.jpg",
+      "../Images/colehaan2.jpg",
+      "../Images/colehaan3.jpg",
     ],
   },
   {
