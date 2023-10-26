@@ -50,9 +50,9 @@ const products = [
     ],
   },
   {
-    name: "ADIDAS-ORIGINALS",
+    name: "DKNY-BOOTS",
     description:
-      "Adidas Originals high tops channeling retro hoops style with high top sneakers or toning it down with a casual shoe,there's a perfect look for you.",
+      "Shop our collection of women's boots and booties. Find tall boots, ankle booties, and more with the iconic DKNY style.",
     images: [
       "../Images/dkny-women1.jpg",
       "../Images/dkny-women2.jpg",
