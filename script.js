@@ -101,5 +101,76 @@ function generateProductCards() {
   });
 }
 
-// Call the function to generate product cards
+// Function to filter products based on search input
+function filterProducts(searchQuery) {
+  const filteredProducts = products.filter((product) =>
+    product.name.toLowerCase().includes(searchQuery.toLowerCase())
+  );
+
+  // Get the product container to display the results
+  const productContainer = document.querySelector(".row");
+  productContainer.innerHTML = "";
+
+  if (filteredProducts.length === 0) {
+    productContainer.innerHTML = "<p>No matching products found.</p>";
+  } else {
+    filteredProducts.forEach((product, index) => {
+      const productCard = document.createElement("div");
+      productCard.classList.add("col-lg-4", "col-md-6", "mb-4");
+      productCard.innerHTML = `
+        <div class="card">
+          <div class="carousel slide" data-ride="carousel" id="productCarousel${index}">
+            <ol class="carousel-indicators">
+              ${product.images
+                .map(
+                  (image, i) =>
+                    `<li data-target="#productCarousel${index}" data-slide-to="${i}"${
+                      i === 0 ? ' class="active"' : ""
+                    }></li>`
+                )
+                .join("")}
+            </ol>
+            <div class="carousel-inner">
+              ${product.images
+                .map(
+                  (image, i) => `
+                  <div class="carousel-item${i === 0 ? " active" : ""}">
+                    <img src="${image}" class="d-block w-100" alt="Image ${
+                    i + 1
+                  }" />
+                  </div>`
+                )
+                .join("")}
+            </div>
+            <!-- Previous and Next controls here -->
+          </div>
+          <div class="card-body">
+             <button class="btn btn-primary" id="buyButton${index}">Buy Now</button>
+            <h5 class="card-title">${product.name}</h5>
+            <p class="card-text">${product.description}</p>
+        </div>
+      `;
+
+      productContainer.appendChild(productCard);
+    });
+  }
+}
+
+// Event listener for the search button
+document.getElementById("searchButton").addEventListener("click", function () {
+  const searchInput = document.getElementById("searchInput").value;
+  filterProducts(searchInput);
+});
+
+// Event listener for Enter key in the search input
+document
+  .getElementById("searchInput")
+  .addEventListener("keyup", function (event) {
+    if (event.key === "Enter") {
+      const searchInput = document.getElementById("searchInput").value;
+      filterProducts(searchInput);
+    }
+  });
+
+// Initial display of all products
 generateProductCards();
