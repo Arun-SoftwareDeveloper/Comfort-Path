@@ -4,7 +4,6 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>COMFORT_PATH</title>
-
     <link rel="icon" href="./Images/title-logo.png" />
     <!-- Include Bootstrap CSS -->
     <link
@@ -13,10 +12,7 @@
     />
     <link rel="stylesheet" href="../Css/style.css" />
   </head>
-
   <body>
-    
-
     <!-- Main content container -->
     <div class="container mt-4">
       <h1>Welcome to Comfort Path</h1>
@@ -41,32 +37,95 @@
           </button>
         </div>
       </div>
-
-      <div class="row"></div>
-
-     
+      <div class="row">
+        <!-- Add your product listings here -->
+      </div>
+      <!-- Razorpay Payment Button -->
+      <button id="razorpayButton" class="btn btn-success">
+        Pay with Razorpay
+      </button>
+    </div>
 
     <!-- Include Bootstrap JS and jQuery -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script src="../Js/KidsShoes.js"></script>
+
+    <!-- Include Razorpay Script -->
+    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
     <script>
-      // JavaScript to toggle the sidebar when "Categories" link is clicked
-      document.addEventListener("DOMContentLoaded", function () {
-        const toggleCategories = document.getElementById("toggleCategories");
-        if (toggleCategories) {
-          toggleCategories.addEventListener("click", function (e) {
-            e.preventDefault(); // Prevent the link from navigating
-            const sidebarContainer =
-              document.querySelector(".sidebar-container");
-            if (sidebarContainer) {
-              sidebarContainer.classList.toggle("show-sidebar");
-            }
-          });
-        }
+      // Replace with your actual Razorpay API key
+      var razorpayKey = "rzp_test_qXZj1G4Ko5WheL";
+
+      // Create a Razorpay instance
+      var rzp = new Razorpay({
+        key: razorpayKey,
       });
+
+      function handleRazorpayPayment() {
+        rzp.open({
+          amount: 10000, // Replace with the actual amount in paisa (e.g., 100.00 for ₹100)
+          currency: "INR", // Replace with the appropriate currency code
+          name: "Comfort Path",
+          description: "Payment for your order",
+          image: "../Images/dashboard1.jpg", // Replace with your logo image URL
+          handler: function (response) {
+            // Handle the payment success and save the order details in your database
+            console.log("Payment ID:", response.razorpay_payment_id);
+            console.log("Order ID:", response.razorpay_order_id);
+            console.log("Signature:", response.razorpay_signature);
+
+            // Send a request to your server to save the order details and send an email confirmation
+            sendPaymentDetails(
+              response.razorpay_payment_id,
+              response.razorpay_order_id,
+              response.razorpay_signature
+            );
+          },
+        });
+      }
+
+      // Event listener for the Razorpay button
+      document
+        .getElementById("razorpayButton")
+        .addEventListener("click", handleRazorpayPayment);
+
+      // Function to send payment details to your server
+      function sendPaymentDetails(paymentId, orderId, signature) {
+        fetch("http://localhost:4000/payment/success", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ paymentId, orderId, signature }),
+        })
+          .then((response) => response.json())
+          .then((data) => {
+            if (data.message === "Payment successful") {
+              // Payment was successful, display a success message to the user
+              alert("Payment successful");
+            } else {
+              // Payment failed, display an error message to the user
+              alert("Payment processing failed");
+            }
+          })
+          .catch((error) => {
+            console.error(
+              "Error sending payment details to the server:",
+              error
+            );
+            // Display an error message to the user
+            alert("Error processing payment");
+          });
+      }
+
+      // Attach the Razorpay payment handler to the button
+      document
+        .getElementById("razorpayButton")
+        .addEventListener("click", handleRazorpayPayment);
     </script>
-    <script src="https://js.stripe.com/v3/"></script>
+
+    <script src="../Js//KidsShoes.js"></script>
   </body>
 </html>

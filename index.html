@@ -105,6 +105,9 @@ footer{
             <li class="nav-item">
               <a class="nav-link" href="#contact">Contact</a>
             </li>
+            <li class="nav-item">
+              <a class="nav-link" href="./Html/Register.html">Login/SignUp</a>
+            </li>
           </ul>
         </div>
       </div>
@@ -306,7 +309,13 @@ footer{
   </form>
 </div>
 
-   
+   <form id="payment-form">
+  <!-- Input fields for card details -->
+  <div id="card-element"></div>
+
+  <button id="submit">Pay Now</button>
+</form>
+
     <footer class="bg-dark text-white">
     <div class="container text-center">
       <p class="footer-container">Copyright &copy; Comfort Path 2023</p>
@@ -318,5 +327,7 @@ footer{
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+    <script src="https://js.stripe.com/v3/"></script>
+
   </body>
 </html>
