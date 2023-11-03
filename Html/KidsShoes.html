@@ -41,91 +41,74 @@
         <!-- Add your product listings here -->
       </div>
       <!-- Razorpay Payment Button -->
-      <button id="razorpayButton" class="btn btn-success">
-        Pay with Razorpay
-      </button>
+      <button id="payButton" class="btn btn-success">Pay with Razorpay</button>
     </div>
 
     <!-- Include Bootstrap JS and jQuery -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    <script src="../Js/KidsShoes.js"></script>
-
     <!-- Include Razorpay Script -->
     <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
     <script>
-      // Replace with your actual Razorpay API key
-      var razorpayKey = "rzp_test_qXZj1G4Ko5WheL";
+      document.addEventListener("DOMContentLoaded", function () {
+        const payButton = document.getElementById("payButton");
 
-      // Create a Razorpay instance
-      var rzp = new Razorpay({
-        key: razorpayKey,
-      });
+        payButton.addEventListener("click", function () {
+          // Example: Simulating a successful payment
+          const orderData = {
+            amount: 1000, // Replace with the actual amount in paisa (e.g., 1000 for 10 INR)
+          };
 
-      function handleRazorpayPayment() {
-        rzp.open({
-          amount: 10000, // Replace with the actual amount in paisa (e.g., 100.00 for ₹100)
-          currency: "INR", // Replace with the appropriate currency code
-          name: "Comfort Path",
-          description: "Payment for your order",
-          image: "../Images/dashboard1.jpg", // Replace with your logo image URL
-          handler: function (response) {
-            // Handle the payment success and save the order details in your database
-            console.log("Payment ID:", response.razorpay_payment_id);
-            console.log("Order ID:", response.razorpay_order_id);
-            console.log("Signature:", response.razorpay_signature);
+          // Replace 'your_api_key' with your actual Razorpay API key
 
-            // Send a request to your server to save the order details and send an email confirmation
-            sendPaymentDetails(
-              response.razorpay_payment_id,
-              response.razorpay_order_id,
-              response.razorpay_signature
-            );
-          },
-        });
-      }
-
-      // Event listener for the Razorpay button
-      document
-        .getElementById("razorpayButton")
-        .addEventListener("click", handleRazorpayPayment);
-
-      // Function to send payment details to your server
-      function sendPaymentDetails(paymentId, orderId, signature) {
-        fetch("http://localhost:4000/payment/success", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({ paymentId, orderId, signature }),
-        })
-          .then((response) => response.json())
-          .then((data) => {
-            if (data.message === "Payment successful") {
-              // Payment was successful, display a success message to the user
-              alert("Payment successful");
-            } else {
-              // Payment failed, display an error message to the user
-              alert("Payment processing failed");
-            }
+          // Create a new order on your backend and get the order ID
+          fetch("http://localhost:4000/payment/create-order", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(orderData),
           })
-          .catch((error) => {
-            console.error(
-              "Error sending payment details to the server:",
-              error
-            );
-            // Display an error message to the user
-            alert("Error processing payment");
-          });
-      }
+            .then((response) => response.json())
+            .then((orderData) => {
+              if (orderData.id) {
+                const options = {
+                  amount: orderData.amount,
+                  currency: "INR",
+                  name: "Your Company Name",
+                  description: "Payment for Order",
+                  order_id: orderData.id,
+                  handler: function (response) {
+                    // Handle the payment success on your backend
+                    fetch("http://localhost:4000/payment/success", {
+                      method: "POST",
+                      headers: {
+                        "Content-Type": "application/json",
+                      },
+                      body: JSON.stringify(response),
+                    })
+                      .then((response) => response.json())
+                      .then((data) => {
+                        if (data.success) {
+                          alert(
+                            "Payment successful. An email confirmation has been sent."
+                          );
+                        } else {
+                          alert("Payment processing failed");
+                        }
+                      });
+                  },
+                };
 
-      // Attach the Razorpay payment handler to the button
-      document
-        .getElementById("razorpayButton")
-        .addEventListener("click", handleRazorpayPayment);
+                const rzp = new Razorpay(options);
+                rzp.open();
+              } else {
+                alert("Failed to create the payment order");
+              }
+            });
+        });
+      });
     </script>
-
-    <script src="../Js//KidsShoes.js"></script>
   </body>
 </html>

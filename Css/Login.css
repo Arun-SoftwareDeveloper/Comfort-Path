@@ -1,5 +1,5 @@
-/* Styles for the register container */
-.container.registerForm-container {
+/* Styles for the login container */
+.container.loginForm-container {
   width: 100%;
   max-width: 400px;
   margin: 0 auto;
@@ -27,7 +27,7 @@
   border-radius: 5px;
 }
 
-/* Styles for the register button */
+/* Styles for the login button */
 .btn.btn-primary {
   width: 100%;
   padding: 10px;
@@ -44,14 +44,21 @@ p {
   margin: 10px 0;
 }
 
-/* Styles for the "Login" link */
+/* Styles for the "Create new account" link */
 a {
   text-decoration: none;
   color: dodgerblue;
   cursor: pointer;
 }
 
+/* Styles for the "Forgot Password?" link */
+.dodgerblue {
+  color: dodgerblue;
+  cursor: pointer;
+}
+
 /* Hover effect for links */
-a:hover {
+a:hover,
+.dodgerblue:hover {
   text-decoration: underline;
 }

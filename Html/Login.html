@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" href="../Css/Login.css" />
+  </head>
+  <body>
+    <div class="container loginForm-container">
+      <div class="container mt-4">
+        <div class="row">
+          <div class="col-md-12">
+            <h1 class="title text-center">Comfort Path</h1>
+            <form class="form-group" id="loginForm">
+              <input
+                type="email"
+                class="form-control"
+                placeholder="enter your email"
+                name="email"
+              />
+              <input
+                type="password"
+                class="form-control"
+                placeholder="enter your password"
+                name="password"
+              />
+              <span class="text-center">
+                <button type="submit" class="btn btn-primary">Login</button>
+              </span>
+              <p>________New to our website?________</p>
+              <a href="../Html/Register.html">
+                <p>Create new account</p>
+              </a>
+              <a href="../Html/ForgotPassword.html">
+                <p
+                  class="text-center dodgerblue"
+                  style="color: dodgerblue; cursor: pointer"
+                >
+                  Forgot Password?
+                </p>
+              </a>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Include React and Axios scripts if needed -->
+    <script src="https://unpkg.com/react@16/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <!-- Your custom JavaScript script goes here to handle form submission, similar to handleLoginForm -->
+    <script src="../Js/login.js"></script>
+  </body>
+</html>

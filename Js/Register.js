@@ -1,56 +1,27 @@
 document.addEventListener("DOMContentLoaded", function () {
-  const headerContainer = document.getElementById("header-container");
-  const registerForm = document.getElementById("register-form");
-
-  // Define the HeaderContainer component
-  function HeaderContainer() {
-    return "Header Content"; // You can replace this with your header content
-  }
-
-  // Define the handleChange function
-  function handleChange(e) {
-    const name = e.target.name;
-    const value = e.target.value;
-
-    formData[name] = value;
-  }
-
-  // Define the handleRegisterForm function
-  async function handleRegisterForm(e) {
+  const form = document.getElementById("registerForm");
+  form.addEventListener("submit", async function (e) {
     e.preventDefault();
+
+    const firstName = form.querySelector('input[name="firstName"]').value;
+    const lastName = form.querySelector('input[name="lastName"]').value;
+    const email = form.querySelector('input[name="email"]').value;
+    const password = form.querySelector('input[name="password"]').value;
+
     try {
-      const response = await fetch(
-        "https://comfort-path.onrender.com/register",
-        {
-          method: "POST",
-          body: JSON.stringify(formData),
-          headers: {
-            "Content-Type": "application/json",
-          },
-        }
-      );
+      const response = await axios.post("http://localhost:4000/register", {
+        firstName,
+        lastName,
+        email,
+        password,
+      });
 
       if (response.status === 200) {
-        // Show a success toast (You will need to implement this)
-        console.log("Registration successful!");
+        alert("Registration successful!");
       }
     } catch (error) {
-      // Show an error toast (You will need to implement this)
-      console.error("Internal Server error");
+      alert("Internal Server error");
+      console.error(error);
     }
-  }
-
-  // Add an event listener to the form for form submission
-  registerForm.addEventListener("submit", handleRegisterForm);
-
-  // Initial formData object
-  const formData = {
-    firstName: "",
-    lastName: "",
-    email: "",
-    password: "",
-  };
-
-  // Render the HeaderContainer component
-  headerContainer.innerHTML = HeaderContainer();
+  });
 });
