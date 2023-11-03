@@ -63,7 +63,7 @@
           // Replace 'your_api_key' with your actual Razorpay API key
 
           // Create a new order on your backend and get the order ID
-          fetch("http://localhost:4000/payment/create-order", {
+          fetch("https://comfort-path.onrender.com/payment/create-order", {
             method: "POST",
             headers: {
               "Content-Type": "application/json",
@@ -81,7 +81,7 @@
                   order_id: orderData.id,
                   handler: function (response) {
                     // Handle the payment success on your backend
-                    fetch("http://localhost:4000/payment/success", {
+                    fetch("https://comfort-path.onrender.com/payment/success", {
                       method: "POST",
                       headers: {
                         "Content-Type": "application/json",
