@@ -196,7 +196,7 @@ footer{
         <!-- Start of the row for categories -->
         <div class="row">
           <div class="col-md-4">
-            <div class="category-card" id="loginPageLink">
+            <div class="category-card">
              <a href="./Html/menshoes.html">
                <img
                 src="./Images/menshoes.jpeg"
@@ -328,43 +328,7 @@ footer{
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script src="https://kit.fontawesome.com/a076d05399.js"></script>
     <script src="https://js.stripe.com/v3/"></script>
-    <script>
-      // JavaScript code to control access to "Men Shoes" section
-document.getElementById("loginPageLink").addEventListener("click", function (event) {
-  var userIsAuthenticated = false; // Replace with your authentication logic
-
-  if (!userIsAuthenticated) {
-    event.preventDefault(); // Prevent the default action (link click)
-    var confirmation = confirm("Please log in or sign up to access this section. Click OK to go to the login page.");
-
-    if (confirmation) {
-      // Redirect the user to the login page
-      window.location.href = "./Html/Login.html"; // Replace with the actual URL of your login page
-    }
-  }
-});
-
-
-
-document.getElementById("loginPageLink").addEventListener("click", function (event) {
-  var userIsAuthenticated = false;
-
-  if (!userIsAuthenticated) {
-    event.preventDefault();
-    alert("Please log in or sign up to access this section.");
-  }
-});
-
-document.getElementById("kidsShoesLink").addEventListener("click", function (event) {
-  var userIsAuthenticated = false;
-
-  if (!userIsAuthenticated) {
-    event.preventDefault();
-    alert("Please log in or sign up to access this section.");
-  }
-});
-
-    </script>
+   
 
   </body>
 </html>
