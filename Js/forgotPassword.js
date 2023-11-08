@@ -13,9 +13,7 @@ document.addEventListener("DOMContentLoaded", function () {
         }
       );
 
-      if (response.status === 406) {
-        alert("User not found");
-      } else if (response.status === 500) {
+      if (response.status === 500) {
         alert("Failed to send reset password email");
       } else if (response.status === 200) {
         alert("Password Reset link sent successfully");

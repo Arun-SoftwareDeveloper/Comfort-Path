@@ -2,18 +2,25 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0"
+    />
     <title>COMFORT_PATH</title>
-
-    <link rel="icon" href="./Images/title-logo.png" />
+    <link
+      rel="icon"
+      href="./Images/title-logo.png"
+    />
     <!-- Include Bootstrap CSS -->
     <link
       rel="stylesheet"
       href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
     />
-    <link rel="stylesheet" href="../Css/style.css" />
+    <link
+      rel="stylesheet"
+      href="../Css/style.css"
+    />
   </head>
-
   <body>
     <!-- Main content container -->
     <div class="container mt-4">
@@ -40,14 +47,150 @@
         </div>
       </div>
 
-      <div class="row"></div>
+      <!-- Product listings container -->
+      <div class="row" id="productList">
+        <!-- Product listings will be added here dynamically using JavaScript -->
+      </div>
     </div>
+     <!-- Recipient Email Modal -->
+      <div
+        class="modal fade"
+        id="recipientModal"
+        tabindex="-1"
+        role="dialog"
+        aria-labelledby="recipientModalLabel"
+        aria-hidden="true"
+      >
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="recipientModalLabel">
+                Enter Recipient's Email
+              </h5>
+              <button
+                type="button"
+                class="close"
+                data-dismiss="modal"
+                aria-label="Close"
+              >
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <div class="form-group">
+                <label for="recipientEmail">Recipient's Email:</label>
+                <input type="email" class="form-control" id="recipientEmail" />
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button
+                type="button"
+                class="btn btn-secondary"
+                data-dismiss="modal"
+              >
+                Close
+              </button>
+              <button
+                type="button"
+                class="btn btn-primary"
+                id="proceedToPayment"
+              >
+                Proceed to Payment
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
 
     <!-- Include Bootstrap JS and jQuery -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const recipientModal = document.getElementById("recipientModal");
+        const proceedToPaymentButton =
+          document.getElementById("proceedToPayment");
+        const recipientEmailInput = document.getElementById("recipientEmail");
+
+        // Function to handle Proceed to Payment button click
+        proceedToPaymentButton.addEventListener("click", function () {
+          const recipientEmail = recipientEmailInput.value;
+          if (!recipientEmail || !isValidEmail(recipientEmail)) {
+            alert("Please enter a valid recipient email address.");
+            return;
+          }
+
+          // Example: Simulating a successful payment
+          const orderData = {
+            amount: 1000, // Replace with the actual amount in paisa (e.g., 1000 for 10 INR)
+            recipientEmail: recipientEmail, // Add the recipient's email to the order data
+          };
+
+          // Replace 'your_api_key' with your actual Razorpay API key
+
+          // Create a new order on your backend and get the order ID
+          fetch("http://localhost:4000/payment/create-order", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(orderData),
+          })
+            .then((response) => response.json())
+            .then((orderData) => {
+              if (orderData.id) {
+                const options = {
+                  amount: orderData.amount,
+                  currency: "INR",
+                  name: "Comfort Path",
+                  description: "Payment for Order",
+                  order_id: orderData.id,
+                  handler: function (response) {
+                    // Handle the payment success on your backend
+                    fetch("http://localhost:4000/payment/success", {
+                      method: "POST",
+                      headers: {
+                        "Content-Type": "application/json",
+                      },
+                      body: JSON.stringify(response),
+                    })
+                      .then((response) => response.json())
+                      .then((data) => {
+                        if (data.success) {
+                          alert(
+                            "Payment successful. An email confirmation has been sent."
+                          );
+                          // Close the recipient email modal
+                          $("#recipientModal").modal("hide");
+                        } else {
+                          alert("Payment processing failed");
+                        }
+                      });
+                  },
+                };
+
+                const rzp = new Razorpay(options);
+                rzp.open();
+              } else {
+                alert("Failed to create the payment order");
+              }
+            });
+        });
+
+        // Function to validate email address
+        function isValidEmail(email) {
+          const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+          return emailRegex.test(email);
+        }
+      });
+    </script>
+    <!-- Your custom JavaScript logic (script.js) -->
     <script src="../script.js"></script>
+
+    <!-- Include Stripe.js for payment processing (if needed) -->
     <script src="https://js.stripe.com/v3/"></script>
   </body>
 </html>

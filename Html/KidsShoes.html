@@ -40,8 +40,57 @@
       <div class="row">
         <!-- Add your product listings here -->
       </div>
-      <!-- Razorpay Payment Button -->
-      <button id="payButton" class="btn btn-success">Pay with Razorpay</button>
+      <!-- Buy Now Button (Triggers Recipient Email Modal) -->
+
+      <!-- Recipient Email Modal -->
+      <div
+        class="modal fade"
+        id="recipientModal"
+        tabindex="-1"
+        role="dialog"
+        aria-labelledby="recipientModalLabel"
+        aria-hidden="true"
+      >
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="recipientModalLabel">
+                Enter Recipient's Email
+              </h5>
+              <button
+                type="button"
+                class="close"
+                data-dismiss="modal"
+                aria-label="Close"
+              >
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <div class="form-group">
+                <label for="recipientEmail">Recipient's Email:</label>
+                <input type="email" class="form-control" id="recipientEmail" />
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button
+                type="button"
+                class="btn btn-secondary"
+                data-dismiss="modal"
+              >
+                Close
+              </button>
+              <button
+                type="button"
+                class="btn btn-primary"
+                id="proceedToPayment"
+              >
+                Proceed to Payment
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
 
     <!-- Include Bootstrap JS and jQuery -->
@@ -52,18 +101,29 @@
     <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
     <script>
       document.addEventListener("DOMContentLoaded", function () {
-        const payButton = document.getElementById("payButton");
+        const recipientModal = document.getElementById("recipientModal");
+        const proceedToPaymentButton =
+          document.getElementById("proceedToPayment");
+        const recipientEmailInput = document.getElementById("recipientEmail");
 
-        payButton.addEventListener("click", function () {
+        // Function to handle Proceed to Payment button click
+        proceedToPaymentButton.addEventListener("click", function () {
+          const recipientEmail = recipientEmailInput.value;
+          if (!recipientEmail || !isValidEmail(recipientEmail)) {
+            alert("Please enter a valid recipient email address.");
+            return;
+          }
+
           // Example: Simulating a successful payment
           const orderData = {
             amount: 1000, // Replace with the actual amount in paisa (e.g., 1000 for 10 INR)
+            recipientEmail: recipientEmail, // Add the recipient's email to the order data
           };
 
           // Replace 'your_api_key' with your actual Razorpay API key
 
           // Create a new order on your backend and get the order ID
-          fetch("https://comfort-path.onrender.com/payment/create-order", {
+          fetch("http://localhost:4000/payment/create-order", {
             method: "POST",
             headers: {
               "Content-Type": "application/json",
@@ -81,7 +141,7 @@
                   order_id: orderData.id,
                   handler: function (response) {
                     // Handle the payment success on your backend
-                    fetch("https://comfort-path.onrender.com/payment/success", {
+                    fetch("http://localhost:4000/payment/success", {
                       method: "POST",
                       headers: {
                         "Content-Type": "application/json",
@@ -94,6 +154,8 @@
                           alert(
                             "Payment successful. An email confirmation has been sent."
                           );
+                          // Close the recipient email modal
+                          $("#recipientModal").modal("hide");
                         } else {
                           alert("Payment processing failed");
                         }
@@ -108,7 +170,14 @@
               }
             });
         });
+
+        // Function to validate email address
+        function isValidEmail(email) {
+          const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+          return emailRegex.test(email);
+        }
       });
     </script>
+    <script src="../Js/KidsShoes.js"></script>
   </body>
 </html>

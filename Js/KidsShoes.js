@@ -95,8 +95,12 @@ function generateProductCards() {
           <!-- Previous and Next controls here -->
         </div>
         <div class="card-body">
-            <button id="razorpayButton" class="btn btn-success">
-        Pay with Razorpay
+              <button
+        class="btn btn-primary"
+        data-toggle="modal"
+        data-target="#recipientModal"
+      >
+        Buy Now
       </button>
           <h5 class="card-title">${product.name}</h5>
           <p class="card-text">${product.description}</p>
@@ -151,7 +155,13 @@ function filterProducts(searchQuery) {
             <!-- Previous and Next controls here -->
           </div>
           <div class="card-body">
-             <button class="btn btn-primary" id="buyButton${index}">Buy Now</button>
+               <button
+        class="btn btn-primary"
+        data-toggle="modal"
+        data-target="#recipientModal"
+      >
+        Buy Now
+      </button>
             <h5 class="card-title">${product.name}</h5>
             <p class="card-text">${product.description}</p>
         </div>

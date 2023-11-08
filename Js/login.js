@@ -15,12 +15,14 @@ document.addEventListener("DOMContentLoaded", function () {
         password,
       });
 
-      if (response.status === 200) {
+      if (response.status === 404) {
         // Successful login
-        alert("Login Successful");
-      } else if (response.status === 403) {
+        alert("User already exists");
+      } else if (response.status === 401) {
         // User not found, show an error message
-        alert("Not a User, Please register");
+        alert("Incorrect Password");
+      } else if (response.status === 200) {
+        alert("User Logged Successfully");
       }
     } catch (error) {
       // Internal server error, show an error message
