@@ -146,7 +146,7 @@
                       headers: {
                         "Content-Type": "application/json",
                       },
-                      body: JSON.stringify(response),
+                      body: JSON.stringify({ ...response, recipientEmail }), // Include recipientEmail
                     })
                       .then((response) => response.json())
                       .then((data) => {
@@ -178,6 +178,7 @@
         }
       });
     </script>
+
     <script src="../Js/KidsShoes.js"></script>
   </body>
 </html>
