@@ -50,3 +50,60 @@
 .mb-4 {
   margin-bottom: 20px;
 }
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.card-title {
+  animation: fadeIn 1s ease-out; /* Adjust the duration and timing function as needed */
+}
+@keyframes bounce {
+  0%,
+  20%,
+  50%,
+  80%,
+  100% {
+    transform: translateY(0);
+  }
+  40% {
+    transform: translateY(-20px);
+  }
+  60% {
+    transform: translateY(-10px);
+  }
+}
+
+.fa-arrow-right {
+  font-size: 1em;
+  color: orange;
+  animation: bounce 2s infinite; /* Adjust the duration and timing function as needed */
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.Categories-title {
+  font-size: 2.5em;
+  color: rgb(13, 223, 223);
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+  animation: fadeIn 1.5s ease-out; /* Adjust the duration and timing function as needed */
+}
+
+body {
+  background-color: #f4f4f4; /* Background color for the entire page */
+}

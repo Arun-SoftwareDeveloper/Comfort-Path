@@ -134,6 +134,7 @@
             .then((orderData) => {
               if (orderData.id) {
                 const options = {
+                  key: "your_razorpay_key_id", // Replace with your actual Razorpay key
                   amount: orderData.amount,
                   currency: "INR",
                   name: "Comfort Path",

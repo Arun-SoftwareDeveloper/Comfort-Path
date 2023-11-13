@@ -11,6 +11,7 @@
       rel="stylesheet"
       href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
     />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <link rel="stylesheet" href="./Css/style.css" />
   </head>
   <style>
@@ -71,9 +72,25 @@ footer{
 .container.text-center {
   text-align: center;
   font-weight: lighter;
-} */
+} 
+.card-title{
+  color:orange
+}
 
-.header-container{}
+.about{
+  text-align: center;
+  padding: 20px;
+  border: 1px solid #ddd;
+  margin: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: box-shadow 0.3s ease-in-out;
+}
+
+.about :hover{
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+
+}
   </style>
   <body>
     <!-- Bootstrap navigation bar -->
@@ -95,6 +112,9 @@ footer{
           <ul class="navbar-nav ml-auto">
             <li class="nav-item">
               <a class="nav-link" href="#Home">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#about" id="toggleCategories">About</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="#categories" id="toggleCategories">Categories</a>
@@ -122,7 +142,7 @@ footer{
       </p>
 
       <!-- Search bar -->
-      <div class="input-group mb-3">
+      <!-- <div class="input-group mb-3">
         <input
           type="text"
           class="form-control"
@@ -135,7 +155,7 @@ footer{
             <i class="fas fa-search"></i> Search
           </button>
         </div>
-      </div>
+      </div> -->
 
       <!-- Bootstrap Carousel -->
       <div
@@ -291,10 +311,28 @@ footer{
               />
               <h3>LOUIS VUITTON CASUAL</h3>
             </div>
-
     </div>
+       <h1 class="Categories-title">About us</h1>
+
+    <div class="row" id="about">
+
+      <div class="col-md-4 about"><i class="fa-solid fa-arrow-right"></i>
+        <h5 class="card-title">Free Shipping</h5>
+        <p>Enjoy free shipping on all orders! We deliver your products right to your doorstep without any additional cost.</p>
+      </div>
+      <div class="col-md-4 about"><i class="fa-solid fa-arrow-right"></i>
+        <h5 class="card-title">Secure Payment</h5>
+        <p>Shop with confidence! Our secure payment methods ensure that your financial information is protected throughout the transaction process.</p>
+      </div>
+      <div class="col-md-4 about"><i class="fa-solid fa-arrow-right"></i>
+        <h5 class="card-title">Serve for you</h5>
+        <p>Our dedicated team is here to serve you. We prioritize customer satisfaction and strive to provide the best shopping experience for you.</p>
+      </div>
+    </div>
+
+    <!-- Contact form -->
 <div class="container" id="contact">
-  <h1 class="contact">Contact</h1>
+  <h1 class="Categories-title">Contact</h1>
   <form class="contact-form" action="https://formspree.io/f/mleyzorw" method="post">
     <div class="form-group">
       <input type="text" class="form-control" name="Name" placeholder="Name" />
@@ -309,12 +347,6 @@ footer{
   </form>
 </div>
 
-   <form id="payment-form">
-  <!-- Input fields for card details -->
-  <div id="card-element"></div>
-
-  <button id="submit">Pay Now</button>
-</form>
 
     <footer class="bg-dark text-white">
     <div class="container text-center">
