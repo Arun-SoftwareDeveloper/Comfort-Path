@@ -99,9 +99,7 @@
 .Categories-title {
   font-size: 2.5em;
   color: rgb(13, 223, 223);
-  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
-    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
-  animation: fadeIn 1.5s ease-out; /* Adjust the duration and timing function as needed */
+  font-family: sans-serif;
 }
 
 body {
